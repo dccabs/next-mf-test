@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import { importRemote } from "@module-federation/utilities";
 import dynamic from "next/dynamic";
 const Index = ({ children, scope, module }) => {
-  const url = "http://localhost:3001";
+  const [fallback, setFallback] = useState(false);
+  const url = "https://next-mf-test-remote-1.vercel.app";
 
   const DynamicComponentWithNoSSR = dynamic(
     () =>
@@ -11,16 +13,12 @@ const Index = ({ children, scope, module }) => {
         module,
       }).catch((err) => {
         console.error("Failed to load module", err);
-        const ErrorComponent = () => (
-          <div>An error occurred while loading the module</div>
-        );
-        ErrorComponent.displayName = "ErrorComponent";
-        return ErrorComponent;
+        setFallback(true);
       }),
     { ssr: false, loading: () => <>...Loading</> }
   );
 
-  return <>{url ? <DynamicComponentWithNoSSR /> : <>{children}</>}</>;
+  return <>{!fallback ? <DynamicComponentWithNoSSR /> : <>{children}</>}</>;
 };
 
 export default Index;

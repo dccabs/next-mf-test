@@ -9,19 +9,26 @@ import DynamicComponent from "/components/DynamicComponent";
 export default function Solutions() {
   return (
     <Layout>
-      <Header />
+      <DynamicComponent module="header" scope="remote1">
+        <Header />
+      </DynamicComponent>
       <main>
         <div className="relative isolate overflow-hidden pt-16">
-          <DynamicComponent scope="home" module="nav">
+          <DynamicComponent module="secondNav" scope="remote1">
             <SecondNav />
           </DynamicComponent>
-          <SecondNav />
-          <Stats />
+          <DynamicComponent module="stats" scope="remote1">
+            <Stats />
+          </DynamicComponent>
         </div>
 
         <div className="space-y-16 py-16 xl:space-y-20">
-          <RecentActivityTable />
-          <RecentClients />
+          <DynamicComponent module="recentActivity" scope="remote1">
+            <RecentActivityTable />
+          </DynamicComponent>
+          <DynamicComponent module="recentClients" scope="remote1">
+            <RecentClients />
+          </DynamicComponent>
         </div>
       </main>
     </Layout>
