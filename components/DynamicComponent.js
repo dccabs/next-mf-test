@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { importRemote } from "@module-federation/utilities";
 import dynamic from "next/dynamic";
-const Index = ({ children, scope, module }) => {
+const Index = ({ children, scope, module, url = "" }) => {
   const [fallback, setFallback] = useState(false);
-  const url = "https://next-mf-test-remote-1.vercel.app";
 
   const DynamicComponentWithNoSSR = dynamic(
     () =>

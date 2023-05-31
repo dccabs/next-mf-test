@@ -12,26 +12,31 @@ export default function Solutions(props) {
     const match = config.find((item) => item.component === module);
     return match.remote_name
   }
+
+  const getUrl = (module) => {
+    const match = config.find((item) => item.component === module);
+    return match.remote_url
+  }
   return (
     <Layout>
-      <DynamicComponent module="header" scope={getScope('header')}>
+      <DynamicComponent module="header" scope={getScope('header')} url={getUrl('header')}>
         <Header />
       </DynamicComponent>
       <main>
         <div className="relative isolate overflow-hidden pt-16">
-          <DynamicComponent module="secondNav" scope={getScope('secondNav')}>
+          <DynamicComponent module="secondNav" scope={getScope('secondNav')} url={getUrl('secondNav')}>
             <SecondNav />
           </DynamicComponent>
-          <DynamicComponent module="stats" scope={getScope('stats')}>
+          <DynamicComponent module="stats" scope={getScope('stats')} url={getUrl('stats')}>
             <Stats />
           </DynamicComponent>
         </div>
 
         <div className="space-y-16 py-16 xl:space-y-20">
-          <DynamicComponent module="recentActivity" scope={getScope('recentActivity')}>
+          <DynamicComponent module="recentActivity" scope={getScope('recentActivity')} url={getUrl('recentActivity')}>
             <RecentActivityTable />
           </DynamicComponent>
-          <DynamicComponent module="recentClients" scope={getScope('recentClients')}>
+          <DynamicComponent module="recentClients" scope={getScope('recentClients')} url={getUrl('recentClients')}>
             <RecentClients />
           </DynamicComponent>
         </div>
