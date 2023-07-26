@@ -46,7 +46,7 @@ export default function Solutions(props) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('https://next-mf-api.vercel.app/api/getConfig');
+  const res = await fetch('http://localhost:3004/api/getConfig');
   const config = await res.json();
   return { props: { config } };
 };
