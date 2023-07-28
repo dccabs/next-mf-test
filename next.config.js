@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const NextFederationPlugin = require('@module-federation/nextjs-mf');
 const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
+const packageJson = require('./package.json');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -15,9 +16,25 @@ const nextConfig = {
                 //     './title': './components/exposedTitle.js',
                 //     './checkout': './pages/checkout',
                 // },
-                // shared: {
-                //     // whatever else
-                // },
+                shared: {
+                    shared: {
+                        react: {
+                            eager: true,
+                            singleton: true,
+                            requiredVersion: packageJson.dependencies.react
+                        },
+                        "react-dom": {
+                            eager: true,
+                            singleton: true,
+                            requiredVersion: packageJson.dependencies["react-dom"]
+                        },
+                        "react/jsx-dev-runtime": {
+                            eager: true,
+                            singleton: true,
+                            requiredVersion: packageJson.dependencies["react"]
+                        },
+                    },
+                },
             })
         );
 
