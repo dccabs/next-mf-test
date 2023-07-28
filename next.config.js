@@ -16,7 +16,6 @@ const nextConfig = {
                 //     './title': './components/exposedTitle.js',
                 //     './checkout': './pages/checkout',
                 // },
-                shared: {
                     shared: {
                         react: {
                             eager: true,
@@ -34,7 +33,6 @@ const nextConfig = {
                             requiredVersion: packageJson.dependencies["react"]
                         },
                     },
-                },
             })
         );
 
